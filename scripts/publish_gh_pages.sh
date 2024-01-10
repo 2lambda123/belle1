@@ -70,7 +70,7 @@ if [ -d docs ]; then
 fi
 
 # Push the changes to the 'gh-pages' branch
-if [ -n "$GITHUB_TOKEN" ]; then
+Add error handling and logging
     git push -f origin gh-pages:gh-pages # Force push 'gh-pages' branch to origin
 else
     echo 'Error: GITHUB_TOKEN environment variable is not set. Unable to push changes to gh-pages branch.' >&2
