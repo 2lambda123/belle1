@@ -27,8 +27,13 @@ fi
 
 # Check if 'static/bundle.js' and 'css/googlecode.css' exist before adding them
 if [ -f static/bundle.js ] && [ -f css/googlecode.css ]; then
+    if [ -f static/bundle.js ] && [ -f css/googlecode.css ]; then
     git add static/bundle.js # Add static/bundle.js to staging
+fi # Remove .gitignore
+fi
+if [ -d docs ]; then
     git add css/googlecode.css # Add css/googlecode.css to staging
+fi
 fi # Remove .gitignore
 fi
 git checkout -b tmp-gh-pages
