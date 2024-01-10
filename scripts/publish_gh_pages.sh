@@ -6,12 +6,17 @@ if [ -f .gitignore ]; then
     # Check if the 'docs' directory exists before changing to it
 if [ -d docs ]; then
     # Check if the 'docs' directory exists before changing to it
-cd docs
+if [ -d docs ]; then
+    cd docs
+else
+    echo 'Error: Directory docs does not exist' >&2
+    exit 1
+fi
     
     # Add error handling and logging
-    npm prune || exit 1 # Prune npm packages
-    npm install || exit 1 # Install npm packages
-    npm run build || exit 1 # Build the project
+    npm prune || { echo 'Error: Failed to prune npm packages' >&2; exit 1; } # Prune npm packages
+    npm install || { echo 'Error: Failed to install npm packages' >&2; exit 1; } # Install npm packages
+    npm run build || { echo 'Error: Failed to build the project' >&2; exit 1; } # Build the project
     
     cd ..
 fi
@@ -35,13 +40,13 @@ git add css/googlecode.css
 git commit -am 'add files'
 cd ..
 # Add error handling and logging
-git subtree split --prefix docs -b gh-pages || exit 1 # Create a subtree split for the 'docs' directory
+git subtree split --prefix docs -b gh-pages || { echo 'Error: Failed to create subtree split' >&2; exit 1; } # Create a subtree split for the 'docs' directory
 
 # Push the changes to the 'gh-pages' branch
 if [ -n "$GITHUB_TOKEN" ]; then
     git push -f origin gh-pages:gh-pages # Force push 'gh-pages' branch to origin
 else
-    echo "Error: GITHUB_TOKEN environment variable is not set. Unable to push changes to 'gh-pages' branch." >&2
+    echo 'Error: GITHUB_TOKEN environment variable is not set. Unable to push changes to gh-pages branch.' >&2
     exit 1
 fi
 git push -f origin gh-pages:gh-pages
