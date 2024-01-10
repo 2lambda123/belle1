@@ -4,7 +4,8 @@ git checkout master # Checkout to master branch
 # Check if .gitignore exists before removing
 if [ -f .gitignore ]; then
     # Check if the 'docs' directory exists before changing to it
-if [ -d docs ]; then
+if [ -f .gitignore ]; then
+    if [ -d docs ]; then
     # Check if the 'docs' directory exists before changing to it
 if [ -d docs ]; then
     cd docs
@@ -28,7 +29,9 @@ if [ -f static/bundle.js ] && [ -f css/googlecode.css ]; then
 fi # Remove .gitignore
 fi
 git checkout -b tmp-gh-pages
-rm .gitignore
+if [ -f .gitignore ]; then
+    rm .gitignore
+fi
 
 cd docs
 npm prune
