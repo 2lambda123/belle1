@@ -9,7 +9,7 @@ if git show-ref --verify --quiet refs/heads/tmp-gh-pages; then
   exit 1
 fi
 git checkout -b tmp-gh-pages
-if ! rm .gitignore; then
+if ! rm -f .gitignore; then
   echo 'Error removing .gitignore file'
   exit 1i
 
@@ -18,16 +18,33 @@ if ! cd docs; then
   exit 1
 fi
 if ! npm prune; then
-  echo 'Error running npm prune'
+  echo 'Error: npm prune failed'
   exit 1
 fi
 if ! npm install; then
-  echo 'Error running npm install'
+  echo 'Error: npm install failed'
   exit 1
 fi
 if ! npm run build; then
-  echo 'Error running npm build'
+  echo 'Error: npm build failed'
   exit 1
+}
+if ! cd ..; then
+  echo 'Error: could not navigate back to the root directory'
+  exit 1
+fi
+if ! git subtree split --prefix docs -b gh-pages; then
+  echo 'Error splitting the docs directory'
+  exit 1
+fi
+if ! git push -f origin gh-pages:gh-pages; then
+  echo 'Error pushing the gh-pages branch'
+  exit 1
+fi
+if ! git checkout master; then
+  echo 'Error checking out master branch'
+  exit 1
+fi
 fi
 
 if ! git add static/bundle.js; then
@@ -59,10 +76,10 @@ if ! git checkout master; then
   exit 1
 fi
 if ! git branch -D tmp-gh-pages; then
-  echo 'Error deleting tmp-gh-pages branch'
+  echo 'Error: deleting tmp-gh-pages branch failed'
   exit 1
 fi
 if ! git branch -D gh-pages; then
-  echo 'Error deleting gh-pages branch'
+  echo 'Error: deleting gh-pages branch failed'
   exit 1
 fi
