@@ -16,7 +16,7 @@ else
 fi
     
     # Add error handling and logging
-    npm prune || { echo 'Error: Failed to prune npm packages' >&2; exit 1; } # Prune npm packages
+    npm prune || { echo 'Error: Failed to prune npm packages' >&2; exit 1; } || { echo 'Error: Failed to prune npm packages' >&2; exit 1; } # Prune npm packages
     npm install || { echo 'Error: Failed to install npm packages' >&2; exit 1; } # Install npm packages
     if [ -d docs ]; then
     npm run build || { echo 'Error: Failed to build the project' >&2; exit 1; } # Build the project
