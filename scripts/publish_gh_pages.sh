@@ -3,7 +3,7 @@ git checkout master # Checkout to master branch
 
 # Check if .gitignore exists before removing
 if [ -f .gitignore ]; then
-    if [ ! -d docs ]; then
+    if [ -d docs ]; then
         echo 'Error: Directory docs does not exist' >&2
         exit 1
     fi
