@@ -66,16 +66,22 @@ git commit -am 'add files'
 cd ..
 # Add error handling and logging
 if [ -d docs ]; then
-    git subtree split --prefix docs -b gh-pages || { echo 'Error: Failed to create subtree split' >&2; exit 1; } # Create a subtree split for the 'docs' directory
+    if [ -d docs ]; then
+    git subtree split --prefix docs -b gh-pages || { echo 'Error: Failed to create subtree split' >&2; exit 1; }
+else
+    echo 'Error: Directory docs does not exist' >&2
+    exit 1
+fi
 fi
 
 # Push the changes to the 'gh-pages' branch
 Add error handling and logging
     git push -f origin gh-pages:gh-pages # Force push 'gh-pages' branch to origin
 else
+    if [ -z "$GITHUB_TOKEN" ]; then
     echo 'Error: GITHUB_TOKEN environment variable is not set. Unable to push changes to gh-pages branch.' >&2
     exit 1
-    exit 1
+fi
 fi
 git push -f origin gh-pages:gh-pages
 # Add error handling and logging
