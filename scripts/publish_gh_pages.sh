@@ -1,4 +1,4 @@
-# Add error handling and logging
+
 git checkout master # Checkout to master branch
 
 # Check if .gitignore exists before removing
@@ -15,7 +15,7 @@ else
     exit 1
 fi
     
-    # Add error handling and logging
+    
     npm prune || { echo 'Error: Failed to prune npm packages' >&2; exit 1; } || { echo 'Error: Failed to prune npm packages' >&2; exit 1; } # Prune npm packages
     npm install || { echo 'Error: Failed to install npm packages' >&2; exit 1; } # Install npm packages
     if [ -d docs ]; then
@@ -29,7 +29,7 @@ fi
 if [ -f static/bundle.js ] && [ -f css/googlecode.css ]; then
     if [ -f static/bundle.js ] && [ -f css/googlecode.css ]; then
     git add static/bundle.js # Add static/bundle.js to staging
-fi # Remove .gitignore
+fi
 fi
 if [ -d docs ]; then
     git add css/googlecode.css # Add css/googlecode.css to staging
@@ -43,7 +43,7 @@ if [ -f .gitignore ]; then
 fi
 fi
 
-cd docs
+
 if [ -d docs ]; then
     npm prune
 fi
@@ -74,8 +74,7 @@ else
 fi
 fi
 
-# Push the changes to the 'gh-pages' branch
-Add error handling and logging
+
     git push -f origin gh-pages:gh-pages # Force push 'gh-pages' branch to origin
 else
     if [ -z "$GITHUB_TOKEN" ]; then
