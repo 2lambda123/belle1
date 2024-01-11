@@ -1,5 +1,6 @@
 # Add error handling and logging
 git checkout master || { echo 'Error: Failed to checkout to master branch' >&2; exit 1; } # Checkout to master branch with error handling and logging
+|| { echo 'Error: Failed to checkout to master branch' >&2; exit 1; }
 
 # Check if .gitignore exists before removing
 if [ -f .gitignore ] && [ -d docs ]; then
@@ -101,4 +102,6 @@ git push -f origin gh-pages:gh-pages
 # Add error handling and logging
 git checkout master || { echo 'Error: Failed to checkout to master branch' >&2; exit 1; } # Checkout to master branch with error handling and logging
 git branch -D tmp-gh-pages || { echo 'Error: Failed to delete tmp-gh-pages branch' >&2; exit 1; } # Delete tmp-gh-pages branch with error handling and logging
+|| { echo 'Error: Failed to delete tmp-gh-pages branch' >&2; exit 1; }
 git branch -D gh-pages || { echo 'Error: Failed to delete gh-pages branch' >&2; exit 1; } # Delete gh-pages branch with error handling and logging
+|| { echo 'Error: Failed to delete gh-pages branch' >&2; exit 1; }
