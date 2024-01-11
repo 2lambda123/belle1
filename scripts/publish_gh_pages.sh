@@ -36,7 +36,7 @@ if [ -f static/bundle.js ] && [ -f css/googlecode.css ]; then
     
     
 if [ -d docs ]; then
-    git add css/googlecode.css # Add css/googlecode.css to staging
+     # Add css/googlecode.css to staging
 fi
 
 fi
@@ -53,7 +53,7 @@ npm install
 npm run build
 
 if [ -d docs ] && [ -f static/bundle.js ] && [ -f css/googlecode.css ]; then
-    git add static/bundle.js
+    
     git add static/bundle.js
     git add css/googlecode.css
 fi
