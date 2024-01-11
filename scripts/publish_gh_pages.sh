@@ -45,19 +45,12 @@ fi
 fi
 
 
-if [ -d docs ]; then
-    npm prune
-fi
-if [ -d docs ]; then
-    npm install
-fi
-if [ -d docs ]; then
-    npm run build
-fi
+npm prune
+npm install
+npm run build
 
 if [ -d docs ] && [ -f static/bundle.js ] && [ -f css/googlecode.css ]; then
     git add static/bundle.js
-    if [ -d docs ] && [ -f static/bundle.js ] && [ -f css/googlecode.css ]; then
     git add static/bundle.js
     git add css/googlecode.css
 fi
