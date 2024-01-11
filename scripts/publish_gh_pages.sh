@@ -74,7 +74,7 @@ fi
 
     git push -f origin gh-pages:gh-pages || { echo 'Error: Failed to force push gh-pages branch to origin' >&2; exit 1; } # Force push 'gh-pages' branch to origin
 else
-    if [ -z "$GITHUB_TOKEN" ]; then
+
     echo 'Error: GITHUB_TOKEN environment variable is not set. Unable to push changes to gh-pages branch.' >&2
     exit 1
     echo 'Error: GITHUB_TOKEN environment variable is not set. Unable to push changes to gh-pages branch.' >&2
