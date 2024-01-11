@@ -78,9 +78,21 @@ if [ -z "$GITHUB_TOKEN" ]; then
     exit 1
 fi
 
+if [ -z "$GITHUB_TOKEN" ]; then
+    echo 'Error: GITHUB_TOKEN environment variable is not set. Unable to push changes to gh-pages branch.' >&2
+    exit 1
+fi
 # Push the changes to the 'gh-pages' branch
-Add error handling and logging
+
     if [ -z "$GITHUB_TOKEN" ]; then
+    echo 'Error: GITHUB_TOKEN environment variable is not set. Unable to push changes to gh-pages branch.' >&2
+    exit 1
+fi
+if [ -z "${GITHUB_TOKEN}" ]; then
+    echo 'Error: GITHUB_TOKEN environment variable is not set. Unable to push changes to gh-pages branch.' >&2
+    exit 1
+fi
+if [ -z "${GITHUB_TOKEN}" ]; then
     echo 'Error: GITHUB_TOKEN environment variable is not set. Unable to push changes to gh-pages branch.' >&2
     exit 1
 fi
