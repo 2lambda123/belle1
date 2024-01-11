@@ -3,7 +3,8 @@ git checkout master # Checkout to master branch
 
 # Check if .gitignore exists before removing
 if [ -f .gitignore ] && [ -d docs ]; then
-    # Check if the 'docs' directory exists before changing to it
+    set -e
+# Check if the 'docs' directory exists before changing to it
 if [ -f .gitignore ]; then
     if [ ! -d docs ]; then
     # Check if the 'docs' directory exists before changing to it
@@ -67,7 +68,7 @@ cd ..
 # Add error handling and logging
 if [ -d docs ]; then
     if [ -d docs ]; then
-    git subtree split --prefix docs -b gh-pages || { echo 'Error: Failed to create subtree split' >&2; exit 1; }
+    git subtree split --prefix docs -b gh-pages || { echo 'Error: Failed to create subtree split' >&2; exit 1; } || exit 1
 else
     echo 'Error: Directory docs does not exist' >&2
     exit 1
@@ -75,7 +76,7 @@ fi
 fi
 
 
-    git push -f origin gh-pages:gh-pages # Force push 'gh-pages' branch to origin
+    git push -f origin gh-pages:gh-pages || { echo 'Error: Failed to force push gh-pages branch to origin' >&2; exit 1; } || exit 1 # Force push 'gh-pages' branch to origin
 else
     if [ -z "$GITHUB_TOKEN" ]; then
     echo 'Error: GITHUB_TOKEN environment variable is not set. Unable to push changes to gh-pages branch.' >&2
