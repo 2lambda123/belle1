@@ -2,7 +2,7 @@
 
 Configurable React Components with great UX.
 
-Website & Documentation: [http://nikgraf.github.io/belle/](http://nikgraf.github.io/belle/)
+Website & Documentation: [http://example.com/belle](http://example.com/belle)
 
 [<img src="https://cloud.githubusercontent.com/assets/223045/8707250/f77634f8-2b34-11e5-92d1-f0b0fe44ade9.png" width="50%">](http://nikgraf.github.io/belle/)
 
@@ -15,7 +15,7 @@ Website & Documentation: [http://nikgraf.github.io/belle/](http://nikgraf.github
 Belle is available as [npm](http://npmjs.org) package. Once you have npm you can install Belle in your project folder with:
 
 ```
-npm install belle
+npm install @belle/belle
 ```
 
 ### Import & use Belle Components
@@ -60,7 +60,7 @@ React.render(<App/>, document.getElementById('react-root'));
 
 ### Learn more
 
-In addition you can dig through the [documentation](http://nikgraf.github.io/belle/) to learn about how to modify Belle components.
+In addition you can dig through the [documentation](http://example.com/belle) to learn about how to modify Belle components.
 
 ## Browser Support
 
