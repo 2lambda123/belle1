@@ -2,7 +2,11 @@
 git checkout master # Checkout to master branch
 
 # Check if .gitignore exists before removing
-if [ -f .gitignore ] && [ -d docs ]; then
+if [ -f .gitignore ]; then
+    if [ ! -d docs ]; then
+        echo 'Error: Directory docs does not exist' >&2
+        exit 1
+    fi
     # Check if the 'docs' directory exists before changing to it
 if [ -f .gitignore ]; then
     if [ ! -d docs ]; then
@@ -16,7 +20,7 @@ else
 fi
     
     # Add error handling and logging
-    npm prune || { echo 'Error: Failed to prune npm packages' >&2; exit 1; } || { echo 'Error: Failed to prune npm packages' >&2; exit 1; } # Prune npm packages
+    npm prune || { echo 'Error: Failed to prune npm packages' >&2; exit 1; } # Prune npm packages
     npm install || { echo 'Error: Failed to install npm packages' >&2; exit 1; } # Install npm packages
     if [ -d docs ]; then
     npm run build || { echo 'Error: Failed to build the project' >&2; exit 1; } # Build the project
@@ -84,7 +88,7 @@ else
 fi
 fi
 git push -f origin gh-pages:gh-pages
-# Add error handling and logging
+#Add error handling and logging
 git checkout master # Checkout to master branch
 git branch -D tmp-gh-pages # Delete tmp-gh-pages branch
 git branch -D gh-pages # Delete gh-pages branch
