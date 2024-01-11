@@ -29,7 +29,7 @@ fi
 # Check if 'static/bundle.js' and 'css/googlecode.css' exist before adding them
 if [ -f static/bundle.js ] && [ -f css/googlecode.css ]; then
     if [ -f static/bundle.js ] && [ -f css/googlecode.css ]; then
-    git add static/bundle.js # Add static/bundle.js to staging
+    
 fi
 fi
 if [ -d docs ]; then
