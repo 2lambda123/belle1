@@ -66,7 +66,12 @@ git commit -am 'add files'
 cd ..
 # Add error handling and logging
 if [ -d docs ]; then
-    git subtree split --prefix docs -b gh-pages || { echo 'Error: Failed to create subtree split' >&2; exit 1; } # Create a subtree split for the 'docs' directory
+    if [ -d docs ]; then
+    git subtree split --prefix docs -b gh-pages || { echo 'Error: Failed to create subtree split' >&2; exit 1; }
+else
+    echo 'Error: Directory docs does not exist' >&2
+    exit 1
+fi
 fi
 
 # Push the changes to the 'gh-pages' branch
