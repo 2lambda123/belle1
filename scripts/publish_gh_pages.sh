@@ -5,7 +5,8 @@ git checkout master # Checkout to master branch
 if [ -f .gitignore ] && [ -d docs ]; then
     set -e
 # Check if the 'docs' directory exists before changing to it
-if [ -f .gitignore ]; then
+    git checkout master # Checkout to master branch
+    if [ -f .gitignore ] && [ -d docs ]; then
     if [ ! -d docs ]; then
     # Check if the 'docs' directory exists before changing to it
 if [ -d docs ]; then
